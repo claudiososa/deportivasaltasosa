@@ -1,0 +1,38 @@
+.navbar {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border:1px solid blue; */
+}
+
+.navbar .logo {
+    display: flex;
+    width: 70%;
+}
+
+.navbar .options {
+    background-color:ghostwhite;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 1.7rem;
+    height: 3.5rem;
+    width: 70%;
+}
+
+ul {
+    margin-right: 1.5rem;
+}
+
+li {
+    display: inline;
+    margin-left:2.3rem;
+}
+
+li:hover {
+    /* font-size: 1.8rem; */
+    font-weight: 800;
+    text-decoration: inherit;
+    color:#ff3366;
+}
