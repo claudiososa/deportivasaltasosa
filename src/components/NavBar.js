@@ -1,6 +1,6 @@
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import './styles/NavBar.css'
-import logo from './images/logo-deportiva.png';
+import CartWidget from './CartWidget';
+import '../assets/styles/NavBar.css'
+import logo from '../assets//images/logo-deportiva.png';
 
 export default function NavBar() {
     return (
@@ -14,7 +14,7 @@ export default function NavBar() {
                     <li>Sobre nosotros</li>
                     <li>Catalogo</li>
                     <li>Contactanos</li>
-                    <li><ShoppingCartIcon /></li>
+                    <li><CartWidget /></li>
                 </ul>
             </div>
         </div>

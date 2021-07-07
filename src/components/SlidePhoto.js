@@ -1,10 +1,10 @@
 import React from 'react';
 import { Fade } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
-import './styles/SlidePhoto.css';
-import slide1 from './images/slide-1.jpg';
-import slide2 from './images/slide-2.jpg';
-import slide3 from './images/slide-3.jpg';
+import '../assets/styles/SlidePhoto.css';
+import slide1 from '../assets//images/slide-1.jpg';
+import slide2 from '../assets//images/slide-2.jpg';
+import slide3 from '../assets//images/slide-3.jpg';
 
 
 export default function SlidePhoto () {
