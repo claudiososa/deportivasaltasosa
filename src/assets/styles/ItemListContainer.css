@@ -31,3 +31,11 @@
 .itemList p {
     font-size: 2.2rem;
 }
+
+.item {
+    margin-top: 2rem;
+}
+
+.item-container {
+    border:1px solid goldenrod;
+}

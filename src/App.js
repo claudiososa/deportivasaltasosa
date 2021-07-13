@@ -11,12 +11,23 @@ const greetings = [ {"greeting":"Buen dia"},
                     {"greeting":"Goodbye"}
                   ];
 
+const products = [
+  {id:1,name:'remera',stock:3},
+  {id:2,name:'zapatilla',stock:2},
+  {id:3,name:'pantalon',stock:10},
+  {id:4,name:'camisa',stock:5},
+  {id:5,name:'corbata',stock:6},
+];
+
 function App() {
   return (
     <div className="container">
         <NavBar />
         <SlidePhoto />
-        <ItemListContainer greetings={greetings}/>
+        <ItemListContainer 
+          greetings={greetings}
+          products={products}
+        />
     </div>
   );
 }
