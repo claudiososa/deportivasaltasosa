@@ -1,27 +1,15 @@
 import React from 'react';
 import '../assets/styles/ItemListContainer.css';
-import ItemCount from './ ItemCount';
+//import ItemCount from './ ItemCount';
+import ItemList from './ItemList';
 
 
-export default function ItemListContainer(props) {
+export default function ItemListContainer() {
     return (
         <div class="itemList">
             <div className="container">
-                <p>Lista de Saludos</p>
-            <ul id="list-items">
-                { props.products.map( (item, index) => (
-                    <li key={index}>
-                        <div className="item-container">
-                            <p>Art {item.id} {item.name} </p>
-                            <div className="item">
-                                <span>Cantidad</span>
-                                <ItemCount stock={item.stock} initial="1" />
-                            </div>
-                        </div>
-                    </li>
-                ))
-                }
-            </ul>
+                <p>Catalogo</p>
+                <ItemList />
             </div>
         </div>
     )
