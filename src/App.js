@@ -1,7 +1,8 @@
 import './App.css';
 import NavBar from  './components/NavBar';
 import SlidePhoto from './components/SlidePhoto';
-import ItemListContainer from './components/ItemListContainer'
+import ItemListContainer from './components/ItemListContainer';
+import ItemDetailContainer from './components/ItemDetailContainer';
 
 // const greetings = [ {"greeting":"Buen dia"},
 //                     {"greeting":"Buen Tardes"},
@@ -24,10 +25,11 @@ function App() {
     <div className="container">
         <NavBar />
         <SlidePhoto />
-        <ItemListContainer 
+        <ItemListContainer
           // greetings={greetings}
           // products={products}
         />
+        <ItemDetailContainer />
     </div>
   );
 }
