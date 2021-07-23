@@ -61,7 +61,7 @@ export default function ItemListContainer() {
                     })}
                 </aside>
                 <section>
-                    <p><strong>Lista de Productos</strong></p>
+                    {/* <p><strong>Lista de Productos</strong></p> */}
                     <ItemList products={itemList} />
                 </section>
             </div>

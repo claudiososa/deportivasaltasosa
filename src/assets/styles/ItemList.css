@@ -1,9 +1,12 @@
 .item-list-container {
     display:flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+    justify-content:left;
+    align-items:flex-start;
+    flex-wrap: wrap;
     margin-top:2rem;
-    /* background-color: blue; */
+}
+
+.item-list-container .itemc {
+    width: 25%;
 }
