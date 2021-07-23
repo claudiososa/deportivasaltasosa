@@ -3,6 +3,7 @@ import '../assets/styles/Item.css';
 import  ItemCount from './ ItemCount';
 
 const ItemDetail = (props) =>  {
+    console.log('props',props);
     return (
         <div className="item-container">
             <div>
@@ -12,10 +13,11 @@ const ItemDetail = (props) =>  {
                 <p>{props.description}</p>
                 <p>$ {props.price}</p>
                 <ItemCount stock={props.stock}
-                           initial={ 1 }/>
+                            initial={ 1 }/>
             </div>
         </div>
     )
+
 }
 
 export default ItemDetail;
