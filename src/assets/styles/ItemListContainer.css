@@ -6,15 +6,37 @@
     width: 100%;
     margin-top:2rem;
     margin-bottom:3rem;
+    /* background-color:blueviolet */
 }
 
 .itemList .container {
     background-color:ghostwhite;
+    /* background-color:burlywood; */
     display: flex;
+    flex-direction:row;
     justify-content: flex-start;
-    align-items: center;
+    align-items:flex-start;
     font-size: 1.7rem;
     width: 70%;
+}
+
+.itemList .container section {
+    /* background-color:ghostwhite; */
+    
+    height: 100%;
+    width: 80%
+}
+
+.itemList .container aside {
+    /* background-color:chartreuse; */
+    width: 20%
+}
+.itemList .container aside p {
+    margin: 3rem 0 3rem 0;
+}
+
+.itemList .container aside a {
+    text-decoration: none;
 }
 
 .itemList .container ul{

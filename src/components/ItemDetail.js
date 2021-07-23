@@ -1,5 +1,6 @@
 import React from 'react'
 import '../assets/styles/Item.css';
+import  ItemCount from './ ItemCount';
 
 const ItemDetail = (props) =>  {
     return (
@@ -10,6 +11,8 @@ const ItemDetail = (props) =>  {
                 <p><strong>{props.title}</strong></p>
                 <p>{props.description}</p>
                 <p>$ {props.price}</p>
+                <ItemCount stock={props.stock}
+                           initial={ 1 }/>
             </div>
         </div>
     )

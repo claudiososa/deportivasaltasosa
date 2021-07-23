@@ -1,77 +1,38 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import '../assets/styles/ItemCount.css';
 
-export default class  ItemCount extends Component {
+const ItemCount = (props) => {
 
-    constructor(props){
-        super();
-        this.state = {
-            count:1,
-            max:props.stock
+    const [count, setCount] = useState(props.initial);
+
+    const addCount = () => {
+        if(count < props.stock){
+            setCount( count + 1)
         }
     }
 
-    addCount = () => {
-        if(this.state.count < this.state.max){
-        this.setState({
-            count: this.state.count+1
-        })
+
+    const subtractCount = () => {
+        if(count > 1){
+            setCount( count - 1)
         }
     }
 
-    subtractCount = () => {
-        console.log('algo');
-        if(this.state.count >1){
-        this.setState({
-            count: this.state.count-1
-        })
-        }
-    }
-
-    render() {
+    //render() {
         return (
             <div className="count-container">
-                <span onClick={this.subtractCount}>
+                <span onClick={subtractCount}>
                     <ArrowLeftIcon style={{ fontSize: 40}} />
                 </span>
-                <span >{this.state.count}</span>
-                <span onClick={this.addCount}>
+                <span >{count}</span>
+                <span onClick={addCount}>
                     <ArrowRightIcon style={{ fontSize: 40}} />
                 </span>
             </div>
         )
-    }
+    //}
 }
 
-
-// import React from 'react'
-
-// export default function  ItemCount(props) {
-
-//     console.log('props',props)
-    
-    
-//     // function ItemCount({ stock, initial,  onAdd }) {
-//     //     // Desarrollar lógica
-//     // }
-
-//     function add (){
-
-//         console.log('add');
-//         props.initial = props.initial + 1;
-//     }
-
-//     function drop (){
-//         console.log('drop');
-//     }
-
-//     return (
-//         <div>
-//             <span onClick={drop}>-</span>
-//             <span>{props.initial}</span>
-//             <span onClick={add}>+</span>
-//         </div>
-//     )
-// }
+export default ItemCount;
