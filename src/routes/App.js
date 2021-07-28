@@ -7,6 +7,7 @@ import Layout from  '../components/Layout';
 import NotFound from  '../components/NotFound';
 import ItemListContainer from '../components/ItemListContainer';
 import ItemDetailContainer from '../components/ItemDetailContainer';
+import Cart from '../components/Cart';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
             <Route exact path="/products" component={ItemListContainer} />
             <Route exact path="/category/:id" component={ItemListContainer} />
             <Route exact path="/item/:id" component={ItemDetailContainer} />
+            <Route exact path="/cart" component={Cart} />
             <Route component={NotFound} />
           </Switch>
         </Layout>

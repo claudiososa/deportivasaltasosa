@@ -3,12 +3,14 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import '../assets/styles/ItemCount.css';
 
-const ItemCount = (props) => {
+const ItemCount = ({initial, stock, onAdd}) => {
 
-    const [count, setCount] = useState(props.initial);
+    const [displayElement,setDisplayElement] = useState('block');
+    const [count, setCount] = useState(initial);
+
 
     const addCount = () => {
-        if(count < props.stock){
+        if(count < stock){
             setCount( count + 1)
         }
     }
@@ -20,16 +22,22 @@ const ItemCount = (props) => {
         }
     }
 
+    const addCart = () => {
+        setDisplayElement('none');
+        onAdd(count);
+    }
+
     //render() {
         return (
             <div className="count-container">
-                <span onClick={subtractCount}>
+                <span style={{"display": displayElement}}  onClick={subtractCount}>
                     <ArrowLeftIcon style={{ fontSize: 40}} />
                 </span>
                 <span >{count}</span>
-                <span onClick={addCount}>
+                <span style={{"display": displayElement}} onClick={addCount}>
                     <ArrowRightIcon style={{ fontSize: 40}} />
                 </span>
+                <button onClick={addCart}>Agregar al Carrito</button>
             </div>
         )
     //}
