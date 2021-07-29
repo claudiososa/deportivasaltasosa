@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import '../assets/styles/Item.css';
 import  ItemCount from './ ItemCount';
+import CartContext from '../context/CartContext';
 
 const ItemDetail = (props) =>  {
+
+    const cartContext = useContext(CartContext);
 
     const [addItem, setAddItem] = useState(0);
     const [displayElement,setDisplayElement] = useState('none');
@@ -30,7 +33,7 @@ const ItemDetail = (props) =>  {
                 <ItemCount onAdd={onAdd} stock={props.stock}
                             initial={ 1 }/>
                 </span>
-                <Link to="/cart"><button style={{ "display": displayElement }}>Termina tu compra</button></Link>
+                <Link to="/cart"><button onClick={() => cartContext.addToCart(props, addItem)} style={{ "display": displayElement }}>Termina tu compra</button></Link>
             </div>
         </div>
     )
