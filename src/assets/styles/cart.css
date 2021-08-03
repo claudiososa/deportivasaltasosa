@@ -10,3 +10,12 @@
 .hideContent {
     display:none
 }
+
+/* .showContent2 {
+    display:flex;
+} */
+
+.containerCar {
+    display:grid;
+    grid-template: repeat(5,100px) / repeat(5,100px)
+}

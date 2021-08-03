@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Provider } from '../context/CartContext'
+import React, { useState, useEffect} from 'react'
+import { Provider } from './CartContext'
 
 const CustomProvider = ({children}) => {
 
@@ -20,8 +20,31 @@ const CustomProvider = ({children}) => {
         } else {// el producto no existe en el carrito
             setCart([...cart, { ...item, qty } ]);
         }
-        setTotalQty(prev => prev + qty);
     }
+
+    useEffect( () => {
+        updateTotalQty();
+        updateTotalPrice();
+    },[cart])
+
+    const updateTotalQty = () => {
+        let total = 0;
+        cart.map( (item) => {
+            total = total + item.qty;
+        })
+
+        setTotalQty(total);
+    }
+
+    const updateTotalPrice = () => {
+        let total = 0;
+        cart.map( (item) => {
+            total += item.qty * item.price;
+        })
+
+        setTotalPrice(total);
+    }
+
     const removeItem = (id) => { // Remover un item del cart usando su id
         let cartTmp = cart.filter(element => element.id != id);;
         setCart(cartTmp);
@@ -45,7 +68,7 @@ const CustomProvider = ({children}) => {
 
     return (
         <div>
-            <Provider value={{ cart, setCart, addToCart, removeItem, clear, isInCart, totalQty, totalPrice }}>
+            <Provider value={{ cart, setCart, addToCart, removeItem, clear,  isInCart, totalQty, totalPrice }}>
                 {children}
             </Provider>
         </div>
