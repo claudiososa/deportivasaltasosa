@@ -21,7 +21,6 @@ export default function Cart() {
                 <strong><h1>Carrito de compras</h1></strong>
             <table>
                 <thead>
-                    <th>Id</th>
                     <th>Descripcion</th>
                     <th>Precio U.</th>
                     <th>Cantidad</th>
@@ -31,7 +30,6 @@ export default function Cart() {
             {cart.map( item => {
                 return (<>
                     <tr>
-                        <td>{item.id}</td>
                         <td>{item.title}</td>
                         <td>{item.price}</td>
                         <td>{item.qty}</td>

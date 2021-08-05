@@ -4,33 +4,65 @@ import '../assets/styles/ItemListContainer.css';
 import Item from './Item';
 //import ItemCount from './ ItemCount';
 import ItemList from './ItemList';
+import { getFirestore } from '../firebase';
 
-const categories = [
-    {id:1, name: 'remeras'},
-    {id:2, name: 'pantalones'},
-    {id:3, name: 'zapatillas'},
-    {id:4, name: 'shorts'},
-]
+// const categories = [
+//     {id:1, name: 'remeras'},
+//     {id:2, name: 'pantalones'},
+//     {id:3, name: 'zapatillas'},
+//     {id:4, name: 'shorts'},
+// ]
 
 
-const products = [
-    {id:1,title:'Remera',description:'remera',price:1000,pictureUrl:'https://netivooregon.s3.amazonaws.com/attach/modelo/20200923/1796/89959988.jpg',stock:3,categoryId:1},
-    {id:2,title:'Zapatilla',description:'zapatilla',price:2000,pictureUrl:'https://netivooregon.s3.amazonaws.com/attach/modelo/20210513/2125/42867958.jpg',stock:4,categoryId:3},
-    {id:3,title:'Short',description:'Short',price:3000,pictureUrl:'https://netivooregon.s3.amazonaws.com/attach/modelo/20210708/2014/20763251.jpg',stock:10,categoryId:4},
-    {id:4,title:'Top',description:'Top',price:4000,pictureUrl:'https://netivooregon.s3.amazonaws.com/attach/modelo/20210428/2014/75597913.jpg',stock:5,categoryId:4},
-    {id:5,title:'Calza',nadescriptionme:'Calza',price:1300,pictureUrl:'https://netivooregon.s3.amazonaws.com/attach/modelo/20210601/2014/41776782.jpeg',stock:6,categoryId:2},
-    {id:6,title:'Remera',description:'Remera',price:4000,pictureUrl:'https://netivooregon.s3.amazonaws.com/attach/modelo/20210428/2014/75597913.jpg',stock:4,categoryId:1},
-  ];
-
+const products = []
+    
 export default function ItemListContainer() {
 
     const [itemList, setItemList] = useState([]);
+    const [categories, setCategories] = useState([]);
     const categoryId = useParams();
 
     useEffect(() => {
-        console.log('categoryId',categoryId);
-        getItems()
+        const db = getFirestore();
+
+        //get categories
+        const queryCategory = db.collection('categories');
+        queryCategory.get().then((querySnapshot) => {
+            let categories = querySnapshot.docs.map( doc => doc.data())
+            setCategories(categories);
+        })
+
+        //get products
+        const query = db.collection('products');
+
+        if((categoryId.id)){
+            let cate = categoryId.id;
+            query.where("category.id", "==",parseInt(cate)).get().then((querySnapshot)=> {
+                let data = querySnapshot.docs.map( doc =>  {
+                    return  {id:doc.id, ...doc.data()}
+                 });
+                 setItemList(data)
+            })
+        } else {
+            query.get().then((querySnapshot) => {
+            if(querySnapshot.size === 0){
+                console.log('no hay resultados');
+            }
+            let data = querySnapshot.docs.map( doc =>  {
+               return  {id:doc.id, ...doc.data()}
+            });
+            setItemList(data)
+            console.log('data',data);
+        })
+
+        }
+
     },[categoryId])
+
+    // useEffect(() => {
+    //     console.log('categoryId',categoryId);
+    //     getItems()
+    // },[categoryId])
 
     const getItems = async () => {
         let data = new Promise ( (resolve, reject) =>  {
@@ -49,7 +81,7 @@ export default function ItemListContainer() {
     }
 
     return (
-        <div class="itemList">
+        <div className="itemList">
             <div className="container">
                 <aside>
                     <h3>Filtrar por</h3>

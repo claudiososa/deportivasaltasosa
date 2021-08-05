@@ -8,7 +8,6 @@ export default function Item(props) {
             <Link to={`/item/${props.id}`}>
                 <img src={props.pictureUrl} width="100%" alt="" srcset="" />
             </Link>
-                <p>Art.{props.id}</p>
                 <p><strong>{props.title}</strong></p>
                 <p>$ {props.price}</p>
         </div>
