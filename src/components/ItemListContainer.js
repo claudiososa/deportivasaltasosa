@@ -29,6 +29,7 @@ export default function ItemListContainer() {
         const queryCategory = db.collection('categories');
         queryCategory.get().then((querySnapshot) => {
             let categories = querySnapshot.docs.map( doc => doc.data())
+            console.log(categories);
             setCategories(categories);
         })
 

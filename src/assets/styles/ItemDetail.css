@@ -1,0 +1,46 @@
+.item-detail-container {
+    display:flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items:flex-start;
+    flex-wrap: wrap;
+    margin-top:2rem;
+    height: 50rem;
+
+}
+
+.item-list-container .itemc {
+    width: 25%;
+}
+
+.detail-container {
+    display:flex;
+    width: 50%;
+    margin-top:3rem;
+    
+    
+
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+}
+
+.detail-container .col-left {
+    width: 50%;
+}
+
+.detail-container .col-right{
+    width: 50%;
+    height: 300px;
+}
+
+.button-confirm-cart {
+    font-size: 2rem;
+    height: 5rem;
+    padding: 1rem;
+}

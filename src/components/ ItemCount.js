@@ -30,6 +30,7 @@ const ItemCount = ({initial, stock, onAdd}) => {
     //render() {
         return (
             <div className="count-container">
+                <div className="count-control">
                 <span style={{"display": displayElement}}  onClick={subtractCount}>
                     <ArrowLeftIcon style={{ fontSize: 40}} />
                 </span>
@@ -37,7 +38,8 @@ const ItemCount = ({initial, stock, onAdd}) => {
                 <span style={{"display": displayElement}} onClick={addCount}>
                     <ArrowRightIcon style={{ fontSize: 40}} />
                 </span>
-                <button onClick={addCart}>Agregar al Carrito</button>
+                </div>
+                <button className="button-add-cart" onClick={addCart}>Agregar al Carrito</button>
             </div>
         )
     //}

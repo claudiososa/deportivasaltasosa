@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import ItemDetail from './ItemDetail';
-import '../assets/styles/ItemList.css';
+import '../assets/styles/ItemDetail.css';
 import { getFirestore } from '../firebase';
 
 const ItemDetailContainer = () => {
@@ -20,16 +20,14 @@ const ItemDetailContainer = () => {
     },[itemId])
 
     return (
-        <div className="item-list-container">
-            <div>
-              <ItemDetail id={Item.id}
+        <div className="item-detail-container">
+            <ItemDetail id={Item.id}
                           title = {Item.title}
                           pictureUrl = {Item.pictureUrl}
                           price = {Item.price}
                           description = {Item.description}
                           stock = {Item.stock}
               />
-            </div>
         </div>
     )
 }

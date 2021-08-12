@@ -1,5 +1,18 @@
 .count-container {
+    display: flex;
     border:1px solid goldenrod;
-    font-size: 3rem;
+    font-size: 2rem;
     background-color: darkgray;
+    justify-content:flex-end;
+    border: 1px solid red;
+}
+
+.count-control {
+    display: flex;
+    height: 50px;
+}
+.button-add-cart {
+    font-size: 2rem;
+    height: 5rem;
+    padding: 1rem;
 }
