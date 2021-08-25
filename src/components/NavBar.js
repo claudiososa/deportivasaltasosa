@@ -18,9 +18,7 @@ export default function NavBar() {
             <div className="options">
                 <ul>
                     <li><Link to="/">Inicio</Link></li>
-                    <li>Sobre nosotros</li>
                     <li><Link to="/products">Catalogo</Link></li>
-                    <li>Contactanos</li>
                 </ul>
                 <span className={ (cart.length > 0) ? "showContent" : "hideContent"}><CartWidget /></span>
             </div>

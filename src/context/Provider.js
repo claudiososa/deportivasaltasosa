@@ -29,24 +29,25 @@ const CustomProvider = ({children}) => {
 
     const updateTotalQty = () => {
         let total = 0;
-        cart.map( (item) => {
-            total = total + item.qty;
-        })
+        cart.map( (item) => (
+            total = total + item.qty
+        ))
 
         setTotalQty(total);
     }
 
     const updateTotalPrice = () => {
         let total = 0;
-        cart.map( (item) => {
-            total += item.qty * item.price;
-        })
+        cart.map( (item) => (
+            total += item.qty * item.price
+            )
+        )
 
         setTotalPrice(total);
     }
 
     const removeItem = (id) => { // Remover un item del cart usando su id
-        let cartTmp = cart.filter(element => element.id != id);;
+        let cartTmp = cart.filter(element => element.id !== id);
         setCart(cartTmp);
     }
     const clear = () => { // Remover todos los items

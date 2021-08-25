@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useContext} from 'react'
+import React, {useState, useContext} from 'react'
 import { Link } from 'react-router-dom';
 import CartContext from '../context/CartContext'
 import '../assets/styles/cart.css';
@@ -7,17 +7,27 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 export default function Cart() {
 
-    
     const { cart,removeItem,clear, totalPrice } = useContext(CartContext)
     const [confirmation,setConfirmation] = useState(false);
+    const [buttonCreateOrden, setButtonCreateOrden] = useState(true);
+    const [buyer, setBuyer] = useState(
+        {
+            name: '',
+            email: '',
+            phone:'',
+        }
+    )
 
+    const  handleSubmit = async e => {
+        e.preventDefault()
+        createOrden();
+       }
+    const handleChange = e => {
+        setBuyer({...buyer,
+                [e.target.name]: e.target.value,
+                })
+    }
 
-    // useEffect(()=> {
-    //     const db = getFirestore();
-    //     const collection = db.collection("products");
-    //     const query = collection.doc('tCmlFLtHWca9ll0xnEpv');
-    //     let update = query.update({stock:9})
-    // },[])
     const createOrden =  ()  => {
 
         const items = cart.map((element) => {
@@ -27,13 +37,13 @@ export default function Cart() {
                     "price":element.price
                 }
         })
+
         const newOrder = {
-            buyer:{"email":"claudio@gmail.com","name":"claudio","phone":"374848484848"},
+            buyer: buyer,
             items: items,
             date:new Date().toISOString(),
             total:totalPrice
         }
-           console.log('order',newOrder);
 
         const db = getFirestore();
         const collection = db.collection("orders");
@@ -57,44 +67,58 @@ export default function Cart() {
 
     return (
         <div className="showContent">
-
-                <div id="containerCar">
-                    Contenido de carrito
-                </div>
-                <div className={ (cart.length > 0) ? "hideContent" : "showContent" }>
+            <div className={(!confirmation) ? 'showContent cart' : 'hideContent' }>
+                <p><h2>Detalle de la orden</h2></p>
+                <div className={ (cart.length > 0 ) ? "hideContent" : "showContent" }>
                     <h1>No hay productos agregados en el carrito</h1>
                     <Link to="/products">ir a Catalogo de productos </Link>
                 </div>
-                <div className={ (cart.length > 0) ? "showContent" : "hideContent" }>
-                    <strong><h1>Carrito de compras</h1></strong>
-                <table>
-                    <thead>
-                        <th>Descripcion</th>
-                        <th>Precio U.</th>
-                        <th>Cantidad</th>
-                        <th>Subtotal</th>
-                        <th>Quitar</th>
-                    </thead>
-                {cart.map( item => {
-                    return (<>
-                        <tr>
-                            <td>{item.title}</td>
-                            <td>{item.price}</td>
-                            <td>{item.qty}</td>
-                            <td>{ item.price * item.qty }</td>
-                            <td><a href="#" onClick={ () =>  removeItem(item.id) }><DeleteForeverIcon /></a></td>
-                        </tr>
-                        </>
-                    )
-                    } )}
-                </table>
-                <span><strong>Total: {totalPrice}</strong></span>
-                <button onClick={ clear }><strong>Vaciar Carrito</strong></button>
-                <button onClick={ createOrden }><strong>Confirmar Compra</strong></button>
+                <div className={ (cart.length > 0 && !confirmation) ? "showContent" : "hideContent" }>
+                    <div className="cart-container">
+                        <div></div>
+                        <div>Producto</div>
+                        <div>Precio U.</div>
+                        <div>Cantidad</div>
+                        <div>Subtotal</div>
+                        <div>Quitar</div>
+                        {cart.map( item => {
+                            return (
+                            <>
+                                <div className="item-img">
+                                    <img src={item.pictureUrl} width="60px" alt="" srcset="" />
+                                </div>
+                                <div className="item-title">{item.title}</div>
+                                <div className="item-price">{item.price}</div>
+                                <div className="item-qty">{item.qty}</div>
+                                <div className="item-subtotal">{ item.price * item.qty }</div>
+                                <div className="item-premove"><a href="#" onClick={ () =>  removeItem(item.id) }><DeleteForeverIcon /></a></div>
+                            </>
+                            )
+                        } )}
+                    </div>
                 </div>
+            </div>
+            <div className={ (cart.length > 0 && !confirmation) ? "showContent confirm-data" : "hideContent" } >
+                <p className="step"><h2>Paso 1 Confirmar Orden</h2></p>
+                <p><h3><span><strong>Total: {totalPrice}</strong></span></h3></p>
+                <button onClick={ () => {setButtonCreateOrden(false)} }><strong>Confirmar Orden</strong></button>
+                <button onClick={ clear }><strong>Vaciar Carrito</strong></button>
+            </div>
+            <div className={ (cart.length > 0 && !confirmation) ? "showContent form-data" : "hideContent" }>
+                <h2>Paso 2 Confirmar Datos y Realizar compra</h2>
+                <form onSubmit={handleSubmit} >
+                    <input disabled={buttonCreateOrden} type="email" name="email"  value={buyer.email}  onChange={handleChange} placeholder="email" required></input>
+                    <input disabled={buttonCreateOrden} type="name" name="name" value={buyer.name} onChange={handleChange} placeholder="nombre" required></input>
+                    <input disabled={buttonCreateOrden} type="phone" name="phone" value={buyer.phone} onChange={handleChange} placeholder="Telefono" required></input>
+                    <button  disabled={buttonCreateOrden} ><strong>Confirmar Datos y Comprar</strong></button>
+                    {/* <button type="submit" disabled={buttonCreateOrden} onClick={ createOrden }><strong>Confirmar Datos y Comprar</strong></button> */}
+                </form>
+            </div>
             <div>
                 {confirmation && <p><strong>Gracias por tu compra: Tu Codigo confirmacion de compra es:  {confirmation}</strong></p>}
+                <div><Link to="/products">ir a Catalogo de productos </Link></div>
             </div>
-        </div>
+    </div>
+
     )
 }

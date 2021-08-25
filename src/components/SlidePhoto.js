@@ -13,17 +13,17 @@ export default function SlidePhoto () {
     <Fade>
       <div className="each-fade">
         <div className="image-container">
-          <img src={slide1} />
+          <img src={slide1} alt={slide1} />
         </div>
       </div>
       <div className="each-fade">
         <div className="image-container">
-          <img src={slide2} />
+          <img src={slide2} alt={slide2}/>
         </div>
       </div>
       <div className="each-fade">
         <div className="image-container">
-          <img src={slide3} />
+          <img src={slide3} alt={slide3} />
         </div>
       </div>
     </Fade>

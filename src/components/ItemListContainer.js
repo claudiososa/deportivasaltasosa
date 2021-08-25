@@ -1,21 +1,9 @@
 import React, { useEffect, useState} from 'react';
 import { Link, useParams } from 'react-router-dom';
 import '../assets/styles/ItemListContainer.css';
-import Item from './Item';
-//import ItemCount from './ ItemCount';
 import ItemList from './ItemList';
 import { getFirestore } from '../firebase';
 
-// const categories = [
-//     {id:1, name: 'remeras'},
-//     {id:2, name: 'pantalones'},
-//     {id:3, name: 'zapatillas'},
-//     {id:4, name: 'shorts'},
-// ]
-
-
-const products = []
-    
 export default function ItemListContainer() {
 
     const [itemList, setItemList] = useState([]);
@@ -60,27 +48,7 @@ export default function ItemListContainer() {
 
     },[categoryId])
 
-    // useEffect(() => {
-    //     console.log('categoryId',categoryId);
-    //     getItems()
-    // },[categoryId])
-
-    const getItems = async () => {
-        let data = new Promise ( (resolve, reject) =>  {
-            setTimeout( () => {
-                if((categoryId.id)){
-                    const productsFiltered = products.filter( item => item.categoryId == categoryId.id)
-                    resolve(productsFiltered)
-                } else {
-                    resolve(products)
-                }
-            },1000)
-        })
-
-        let list = await data
-        setItemList(list)
-    }
-
+ 
     return (
         <div className="itemList">
             <div className="container">

@@ -1,4 +1,14 @@
-# Deportiva Salta 
+# Deportiva Salta
+
+# About the project
+Is my first project of type e-comerce development on ReacJs. 
+Thanks CoderHouse!!!
+
+# Library used
+
+material-ui/icons: was used for show icons avaliable from material desing
+react-slideshow-image: this library was used for show 3 photos on the home.
+firebase: library necesary for connection to DB (Collecctions of data)
 
 # Getting Started with Create React App
 
