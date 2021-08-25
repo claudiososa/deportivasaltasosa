@@ -68,12 +68,14 @@ export default function Cart() {
     return (
         <div className="showContent">
             <div className={(!confirmation) ? 'showContent cart' : 'hideContent' }>
+                <div className="section-cart">
                 <p><h2>Detalle de la orden</h2></p>
                 <div className={ (cart.length > 0 ) ? "hideContent" : "showContent" }>
                     <h1>No hay productos agregados en el carrito</h1>
                     <Link to="/products">ir a Catalogo de productos </Link>
                 </div>
-                <div className={ (cart.length > 0 && !confirmation) ? "showContent" : "hideContent" }>
+                <div className={ (cart.length > 0 && !confirmation) ? "section-cart" : "hideContent" }>
+                    
                     <div className="cart-container">
                         <div></div>
                         <div>Producto</div>
@@ -97,9 +99,10 @@ export default function Cart() {
                         } )}
                     </div>
                 </div>
+                </div>
             </div>
             <div className={ (cart.length > 0 && !confirmation) ? "showContent confirm-data" : "hideContent" } >
-                <div>
+                <div class="section-cart">
                     <p><h2>Paso 1 Confirmar Orden</h2></p>
                     <p><h3><span><strong>Total: {totalPrice}</strong></span></h3></p>
                     <button onClick={ () => {setButtonCreateOrden(false)} }><strong>Confirmar Orden</strong></button>
@@ -107,6 +110,7 @@ export default function Cart() {
                 </div>
             </div>
             <div className={ (cart.length > 0 && !confirmation) ? "showContent form-data" : "hideContent" }>
+                <div class="section-cart">
                 <p><h2>Paso 2 Confirmar compra</h2></p>
                 <form onSubmit={handleSubmit} >
                     <input disabled={buttonCreateOrden} type="email" name="email"  value={buyer.email}  onChange={handleChange} placeholder="email" required></input>
@@ -115,6 +119,7 @@ export default function Cart() {
                     <button  disabled={buttonCreateOrden} ><strong>Confirmar Datos y Comprar</strong></button>
                     {/* <button type="submit" disabled={buttonCreateOrden} onClick={ createOrden }><strong>Confirmar Datos y Comprar</strong></button> */}
                 </form>
+                </div>
             </div>
             <div>
                 {confirmation && <p><strong>Gracias por tu compra: Tu Codigo confirmacion de compra es:  {confirmation}</strong></p>}

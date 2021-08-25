@@ -10,6 +10,10 @@ material-ui/icons: was used for show icons avaliable from material desing
 react-slideshow-image: this library was used for show 3 photos on the home.
 firebase: library necesary for connection to DB (Collecctions of data)
 
+# Link Video tutorial 
+
+[a Video Guia](https://vicomser.com/deportiva/TutorialDeportivaSalta.mp4)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
