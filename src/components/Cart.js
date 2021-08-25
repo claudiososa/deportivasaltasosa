@@ -99,13 +99,15 @@ export default function Cart() {
                 </div>
             </div>
             <div className={ (cart.length > 0 && !confirmation) ? "showContent confirm-data" : "hideContent" } >
-                <p className="step"><h2>Paso 1 Confirmar Orden</h2></p>
-                <p><h3><span><strong>Total: {totalPrice}</strong></span></h3></p>
-                <button onClick={ () => {setButtonCreateOrden(false)} }><strong>Confirmar Orden</strong></button>
-                <button onClick={ clear }><strong>Vaciar Carrito</strong></button>
+                <div>
+                    <p><h2>Paso 1 Confirmar Orden</h2></p>
+                    <p><h3><span><strong>Total: {totalPrice}</strong></span></h3></p>
+                    <button onClick={ () => {setButtonCreateOrden(false)} }><strong>Confirmar Orden</strong></button>
+                    <button onClick={ clear }><strong>Vaciar Carrito</strong></button>
+                </div>
             </div>
             <div className={ (cart.length > 0 && !confirmation) ? "showContent form-data" : "hideContent" }>
-                <h2>Paso 2 Confirmar Datos y Realizar compra</h2>
+                <p><h2>Paso 2 Confirmar compra</h2></p>
                 <form onSubmit={handleSubmit} >
                     <input disabled={buttonCreateOrden} type="email" name="email"  value={buyer.email}  onChange={handleChange} placeholder="email" required></input>
                     <input disabled={buttonCreateOrden} type="name" name="name" value={buyer.name} onChange={handleChange} placeholder="nombre" required></input>
@@ -116,7 +118,7 @@ export default function Cart() {
             </div>
             <div>
                 {confirmation && <p><strong>Gracias por tu compra: Tu Codigo confirmacion de compra es:  {confirmation}</strong></p>}
-                <div><Link to="/products">ir a Catalogo de productos </Link></div>
+                {/* <div><Link to="/products">ir a Catalogo de productos </Link></div> */}
             </div>
     </div>
 
